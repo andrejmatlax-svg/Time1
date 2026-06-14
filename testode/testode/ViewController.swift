@@ -193,5 +193,12 @@ class ViewController: UIViewController {
         }
     
     
-   
+    
+    override func viewDidLoad() {
+            super.viewDidLoad()
+            setupUI()
+            updateUIForCurrentMode()
+        }
+    
+    
 }
