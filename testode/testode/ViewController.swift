@@ -133,6 +133,22 @@ class ViewController: UIViewController {
                 self?.tick()
             }
         }
+    private func switchMode() {
+            // Меняем режим на противоположный
+            currentMode = (currentMode == .work) ? .rest : .work
+            secondsLeft = currentMode.duration
+            
+            // Легкая вибрация при переключении режима
+            let feedbackGenerator = UINotificationFeedbackGenerator()
+            feedbackGenerator.notificationOccurred(.success)
+            
+            UIView.animate(withDuration: 0.3) {
+                self.updateUIForCurrentMode()
+            }
+        }
+    
+    
+    
     
     private func pauseTimer() {
             isTimerRunning = false
