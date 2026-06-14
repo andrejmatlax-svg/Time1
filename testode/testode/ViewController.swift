@@ -4,7 +4,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-//MARK: Свойства
+    
+    
+//MARK: свойства TimerMode
     enum TimerMode{
         case work
         case rest
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
         }
     }
       
-    
+    //MARK: перечесление TimeMode
     private var currentMode: TimerMode = .work
     private var timer1: Timer?
     private var secondLeft: Int = TimerMode.work.duration
@@ -34,7 +36,7 @@ class ViewController: UIViewController {
     
  
     
-    
+    //MARK: Label and Button
     private let containerCircleView: UIView = {
             let view = UIView()
         
@@ -49,8 +51,8 @@ class ViewController: UIViewController {
             let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-                label.font = UIFont.systemFont(ofSize: 54, weight: .thin)
-                label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 54, weight: .thin)
+        label.textAlignment = .center
                 return label
             }()
     
@@ -58,7 +60,7 @@ class ViewController: UIViewController {
             let button = UIButton(type: .system)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-                button.tintColor = .systemGray
+        button.tintColor = .systemGray
                 return button
             }()
     
@@ -66,8 +68,8 @@ class ViewController: UIViewController {
             let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-                label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-                label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.textAlignment = .center
                 return label
             }()
         
@@ -80,7 +82,7 @@ class ViewController: UIViewController {
 
     
    
-    
+    //MARK: механизм приложения
     @objc private func controlButtonTapped() {
             if isTimerRunning {
                 pauseTimer()
@@ -118,6 +120,8 @@ class ViewController: UIViewController {
                 self.updateUIForCurrentMode()
             }
         }
+    
+    //MARK: цвет
     
     private func updateUIForCurrentMode() {
             let color = currentMode.Color
@@ -158,7 +162,7 @@ class ViewController: UIViewController {
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
         }
 
-    
+    //MARK: распаложение элементов
     private func setupUI() {
             view.backgroundColor = .white
             
@@ -193,7 +197,7 @@ class ViewController: UIViewController {
         }
     
     
-    
+    //MARK: вывод на экран 
     override func viewDidLoad() {
             super.viewDidLoad()
             setupUI()
