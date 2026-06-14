@@ -53,5 +53,13 @@ class ViewController: UIViewController {
                 label.textAlignment = .center
                 return label
             }()
+    
+    private let controlButton: UIButton = {
+            let button = UIButton(type: .system)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+                button.tintColor = .systemGray 
+                return button
+            }()
                     
 }
