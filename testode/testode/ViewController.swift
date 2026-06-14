@@ -125,18 +125,20 @@ class ViewController: UIViewController {
         }
     
     
+    
+    
     private func startTimer() {
             isTimerRunning = true
             updateButtonIcon()
             
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            timer1 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
                 self?.tick()
             }
         }
     private func switchMode() {
             // Меняем режим на противоположный
             currentMode = (currentMode == .work) ? .rest : .work
-            secondsLeft = currentMode.duration
+        secondLeft = currentMode.duration
             
             // Легкая вибрация при переключении режима
             let feedbackGenerator = UINotificationFeedbackGenerator()
@@ -148,7 +150,7 @@ class ViewController: UIViewController {
         }
     
     private func updateUIForCurrentMode() {
-            let color = currentMode.themeColor
+            let color = currentMode.Color
             
             containerCircleView.layer.borderColor = color.cgColor
             timeLabel.textColor = color
@@ -179,6 +181,13 @@ class ViewController: UIViewController {
                 switchMode()
             }
         }
+    
+    private func updateTimeLabel() {
+            let minutes = secondLeft / 60
+            let seconds = secondLeft % 60
+            timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        }
+        
     
     
 }
