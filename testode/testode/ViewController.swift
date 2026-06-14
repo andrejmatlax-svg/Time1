@@ -134,5 +134,21 @@ class ViewController: UIViewController {
             }
         }
     
+    private func pauseTimer() {
+            isTimerRunning = false
+            timer1?.invalidate()
+            timer1 = nil
+            updateButtonIcon()
+        }
+    
+    private func tick() {
+            if secondLeft > 0 {
+                secondLeft -= 1
+                updateTimeLabel()
+            } else {
+                switchMode()
+            }
+        }
+    
     
 }
