@@ -147,6 +147,20 @@ class ViewController: UIViewController {
             }
         }
     
+    private func updateUIForCurrentMode() {
+            let color = currentMode.themeColor
+            
+            containerCircleView.layer.borderColor = color.cgColor
+            timeLabel.textColor = color
+            modeLabel.textColor = color
+            controlButton.tintColor = color
+            
+            modeLabel.text = (currentMode == .work) ? "РАБОТА" : "ОТДЫХ"
+            
+            updateTimeLabel()
+            updateButtonIcon()
+        }
+    
     
     
     
