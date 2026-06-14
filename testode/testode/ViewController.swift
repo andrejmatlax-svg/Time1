@@ -44,5 +44,14 @@ class ViewController: UIViewController {
                 view.layer.borderWidth = 3
                 return view
             }()
+    
+    private let timeLabel: UILabel = {
+            let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+                label.font = UIFont.systemFont(ofSize: 54, weight: .thin)
+                label.textAlignment = .center
+                return label
+            }()
                     
 }
