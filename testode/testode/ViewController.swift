@@ -75,6 +75,8 @@ class ViewController: UIViewController {
             super.viewDidLayoutSubviews()
         containerCircleView.layer.cornerRadius = containerCircleView.frame.size.width / 2
         }
+    
+            
 
     
     
@@ -110,5 +112,17 @@ class ViewController: UIViewController {
                 controlButton.heightAnchor.constraint(equalToConstant: 44)
             ])
         }
-                    
+    
+    
+    
+    
+    @objc private func controlButtonTapped() {
+            if isTimerRunning {
+                pauseTimer()
+            } else {
+                startTimer()
+            }
+        }
+    
+    
 }
