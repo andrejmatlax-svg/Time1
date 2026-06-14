@@ -58,8 +58,17 @@ class ViewController: UIViewController {
             let button = UIButton(type: .system)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-                button.tintColor = .systemGray 
+                button.tintColor = .systemGray
                 return button
+            }()
+    
+    private let modeLabel: UILabel = {
+            let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+                label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+                label.textAlignment = .center
+                return label
             }()
                     
 }
