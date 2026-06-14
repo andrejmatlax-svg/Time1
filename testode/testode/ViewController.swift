@@ -5,7 +5,7 @@ import UIKit
 
 class ViewController: UIViewController {
 //MARK: Свойства
-    enum Timer{
+    enum TimerMode{
         case work
         case rest
         
@@ -27,9 +27,9 @@ class ViewController: UIViewController {
     }
       
     
-    private var currentMode: Timer = .work
+    private var currentMode: TimerMode = .work
     private var timer1: Timer?
-    private var secondLeft: Int = Timer.work.duration
+    private var secondLeft: Int = TimerMode.work.duration
     private var isTimerRunning: Bool = false
     
  
@@ -79,42 +79,7 @@ class ViewController: UIViewController {
             
 
     
-    
-    private func setupUI() {
-            view.backgroundColor = .white
-            
-            view.addSubview(modeLabel)
-            view.addSubview(containerCircleView)
-            containerCircleView.addSubview(timeLabel)
-            containerCircleView.addSubview(controlButton)
-            
-            controlButton.addTarget(self, action: #selector(controlButtonTapped), for: .touchUpInside)
-            
-            NSLayoutConstraint.activate([
-                // Метка текущего режима сверху
-                modeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-                modeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                
-                // Круглый контейнер по центру экрана
-                containerCircleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                containerCircleView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                containerCircleView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
-                containerCircleView.heightAnchor.constraint(equalTo: containerCircleView.widthAnchor),
-                
-                // Таймер внутри круга (чуть смещен вверх, чтобы уступить место кнопке)
-                timeLabel.centerXAnchor.constraint(equalTo: containerCircleView.centerXAnchor),
-                timeLabel.centerYAnchor.constraint(equalTo: containerCircleView.centerYAnchor, constant: -15),
-                
-                // Кнопка управления под цифрами внутри круга
-                controlButton.centerXAnchor.constraint(equalTo: containerCircleView.centerXAnchor),
-                controlButton.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 10),
-                controlButton.widthAnchor.constraint(equalToConstant: 44),
-                controlButton.heightAnchor.constraint(equalToConstant: 44)
-            ])
-        }
-    
-    
-    
+   
     
     @objc private func controlButtonTapped() {
             if isTimerRunning {
@@ -124,7 +89,12 @@ class ViewController: UIViewController {
             }
         }
     
-    
+    private func updateButtonIcon() {
+            let imageName = isTimerRunning ? "pause.fill" : "play.fill"
+            let config = UIImage.SymbolConfiguration(pointSize: 28, weight: .light)
+            let image = UIImage(systemName: imageName, withConfiguration: config)
+            controlButton.setImage(image, for: .normal)
+        }
     
     
     private func startTimer() {
@@ -187,7 +157,41 @@ class ViewController: UIViewController {
             let seconds = secondLeft % 60
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
         }
-        
+
+    
+    private func setupUI() {
+            view.backgroundColor = .white
+            
+            view.addSubview(modeLabel)
+            view.addSubview(containerCircleView)
+            containerCircleView.addSubview(timeLabel)
+            containerCircleView.addSubview(controlButton)
+            
+            controlButton.addTarget(self, action: #selector(controlButtonTapped), for: .touchUpInside)
+            
+            NSLayoutConstraint.activate([
+                // Метка текущего режима сверху
+                modeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+                modeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                
+                // Круглый контейнер по центру экрана
+                containerCircleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                containerCircleView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                containerCircleView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
+                containerCircleView.heightAnchor.constraint(equalTo: containerCircleView.widthAnchor),
+                
+                // Таймер внутри круга (чуть смещен вверх, чтобы уступить место кнопке)
+                timeLabel.centerXAnchor.constraint(equalTo: containerCircleView.centerXAnchor),
+                timeLabel.centerYAnchor.constraint(equalTo: containerCircleView.centerYAnchor, constant: -15),
+                
+                // Кнопка управления под цифрами внутри круга
+                controlButton.centerXAnchor.constraint(equalTo: containerCircleView.centerXAnchor),
+                controlButton.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 10),
+                controlButton.widthAnchor.constraint(equalToConstant: 44),
+                controlButton.heightAnchor.constraint(equalToConstant: 44)
+            ])
+        }
     
     
+   
 }
