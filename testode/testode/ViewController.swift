@@ -27,6 +27,11 @@ class ViewController: UIViewController {
     }
       
     
+    private var currentMode: Timer = .work
+    private var timer1: Timer?
+    private var secondLeft: Int = Timer.work.duration
+    private var isTimerRunning: Bool = false
+    
     
     
                     
