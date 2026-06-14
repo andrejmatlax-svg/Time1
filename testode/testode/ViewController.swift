@@ -32,7 +32,17 @@ class ViewController: UIViewController {
     private var secondLeft: Int = Timer.work.duration
     private var isTimerRunning: Bool = false
     
+ 
     
     
+    private let containerCircleView: UIView = {
+            let view = UIView()
+        
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+                view.backgroundColor = .clear
+                view.layer.borderWidth = 3
+                return view
+            }()
                     
 }
