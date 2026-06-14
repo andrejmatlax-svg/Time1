@@ -125,4 +125,14 @@ class ViewController: UIViewController {
         }
     
     
+    private func startTimer() {
+            isTimerRunning = true
+            updateButtonIcon()
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+                self?.tick()
+            }
+        }
+    
+    
 }
