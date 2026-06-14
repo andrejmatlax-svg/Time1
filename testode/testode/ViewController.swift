@@ -70,5 +70,12 @@ class ViewController: UIViewController {
                 label.textAlignment = .center
                 return label
             }()
+        
+    override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+        containerCircleView.layer.cornerRadius = containerCircleView.frame.size.width / 2
+        }
+
+    
                     
 }
